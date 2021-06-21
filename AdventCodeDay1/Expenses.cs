@@ -1,26 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Text;
 
 namespace AdventCodeDay1
 {
-    class Program
+    public class Expenses
     {
-        static void Main(string[] args)
+        public string Test { get; set; } = "Test";
+        public Dictionary<int, int> CreateExpenseDictionary(string[] input)
         {
-            string[] file = File.ReadAllLines("../../../input.txt");
-            Expenses expenses = new Expenses();
-            Dictionary<int, int> dictionary = CreateExpenseDictionary(file);
-            Dictionary<int, int> dictionary2 = expenses.CreateExpenseDictionary(file);
-            Console.WriteLine(ExpenseCalculate2020(dictionary));
-            Console.WriteLine(expenses.ExpenseCalculate2020(dictionary2));
-            Console.WriteLine(ExpenseCalculate2020ThreeNumbers(dictionary));
-            Console.WriteLine(expenses.ExpenseCalculate2020ThreeNumbers(dictionary2));
-            
-        }
-        static Dictionary<int, int> CreateExpenseDictionary(string[] input)
-        {
-            if(input == null || input.Length == 0)
+            if (input == null || input.Length == 0)
             {
                 return null;
             }
@@ -33,7 +22,7 @@ namespace AdventCodeDay1
             }
             return dictionary;
         }
-        static int ExpenseCalculate2020(Dictionary<int, int> dictionary)
+        public int ExpenseCalculate2020(Dictionary<int, int> dictionary)
         {
             if (dictionary.Count == 0 || dictionary == null)
             {
@@ -52,7 +41,7 @@ namespace AdventCodeDay1
             }
             return 0;
         }
-        static int ExpenseCalculate2020ThreeNumbers(Dictionary<int, int> dictionary)
+        public int ExpenseCalculate2020ThreeNumbers(Dictionary<int, int> dictionary)
         {
             if (dictionary.Count == 0 || dictionary == null)
             {
@@ -67,7 +56,7 @@ namespace AdventCodeDay1
                     for (int k = j + 1; k < dictionary.Count; k++)
                     {
                         int third = dictionary.GetValueOrDefault(k);
-                        if((current + second + third) == 2020)
+                        if ((current + second + third) == 2020)
                         {
                             return current * second * third;
                         }
