@@ -9,29 +9,11 @@ namespace AdventCodeDay1
         static void Main(string[] args)
         {
             string[] file = File.ReadAllLines("../../../input.txt");
-            Console.WriteLine(ExpenseCalculate2020(file));
+            Expenses expenses = new Expenses();
+            Dictionary<int, int> dictionary1 = expenses.CreateExpenseDictionary(file);
+            Console.WriteLine(expenses.ExpenseCalculate2020(dictionary1));
+            Console.WriteLine(expenses.ExpenseCalculate2020ThreeNumbers(dictionary1));
         }
-        static int ExpenseCalculate2020(string[] input)
-        {
-            Dictionary<int, int> dictionary = new Dictionary<int, int>();
-            int key = 0;
-            foreach (string number in input)
-            {
-                dictionary.Add(key, Convert.ToInt32(number));
-                key++;
-            }
-            for (int i = 0; i < dictionary.Count; i++)
-            {
-                int current = dictionary.GetValueOrDefault(i);
-                for (int j = i + 1; j < dictionary.Count; j++)
-                {
-                    if(current + dictionary.GetValueOrDefault(j) == 2020)
-                    {
-                        return current * dictionary.GetValueOrDefault(j);
-                    }
-                }
-            }
-            return 0;
-        }
+ 
     }
 }
